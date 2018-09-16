@@ -2,6 +2,7 @@ package stringutil
 
 import "strings"
 
+// PaddingLeft add padWith to the left of s until it reaches a length overallLen
 func PaddingLeft(s string, padWith string, overallLen int) string {
 	if overallLen < len(s) {
 		return s
@@ -11,6 +12,7 @@ func PaddingLeft(s string, padWith string, overallLen int) string {
 	return res[(len(res) - overallLen):]
 }
 
+// PaddingRight add padWith to the right of s until it reaches a length overallLen
 func PaddingRight(s string, padWith string, overallLen int) string {
 	if overallLen < len(s) {
 		return s
