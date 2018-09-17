@@ -1,0 +1,9 @@
+sudo: required
+services:
+      - docker
+
+before_script:
+      - docker pull golang
+
+script:
+      - docker run -v $(pwd):/go/src/github.com/butik/go-butik-kit -w /go/src/github.com/butik/go-butik-kit golang /bin/bash -c "go get -t ./... && go test -v ./..."

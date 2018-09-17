@@ -24,7 +24,7 @@ func PaddingRight(s string, padWith string, overallLen int) string {
 }
 
 func paddingString(s string, padWith string, overallLen int) string {
-	padCount := 1 + (overallLen-len(s)) / len(padWith)
+	padCount := 1 + (overallLen-len(s))/len(padWith)
 	if padCount < 0 {
 		padCount = 0
 	}
