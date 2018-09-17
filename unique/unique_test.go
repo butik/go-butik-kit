@@ -1,9 +1,9 @@
 package unique
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
 	"fmt"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestUniqueStrings(t *testing.T) {
