@@ -2,9 +2,11 @@ package stringutil
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
+	"strings"
 	"testing"
 	"testing/quick"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPaddingLeft(t *testing.T) {
@@ -51,11 +53,11 @@ func ExamplePaddingRight() {
 
 func TestGeneratedPaddingLeft(t *testing.T) {
 	fn := func(s string, i uint8) bool {
-		r := PaddingLeft(s, "*", int(i))
+		r := PaddingLeft(s, "*", i)
 		if len(s) > int(i) {
-			return len(r) > int(i)
+			return r == s
 		}
-		return len(r) == int(i)
+		return len(r) == int(i) && strings.HasSuffix(r, s)
 	}
 	if err := quick.Check(fn, nil); err != nil {
 		t.Error(err)
@@ -64,11 +66,11 @@ func TestGeneratedPaddingLeft(t *testing.T) {
 
 func TestGeneratedPaddingRight(t *testing.T) {
 	fn := func(s string, i uint8) bool {
-		r := PaddingRight(s, "*", int(i))
+		r := PaddingRight(s, "*", i)
 		if len(s) > int(i) {
-			return len(r) > int(i)
+			return r == s
 		}
-		return len(r) == int(i)
+		return len(r) == int(i) && strings.HasPrefix(r, s)
 	}
 	if err := quick.Check(fn, nil); err != nil {
 		t.Error(err)
