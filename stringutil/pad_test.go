@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"testing/quick"
 )
 
 func TestPaddingLeft(t *testing.T) {
@@ -46,4 +47,30 @@ func ExamplePaddingRight() {
 	// 10
 	// 1**
 	// 1*
+}
+
+func TestGeneratedPaddingLeft(t *testing.T) {
+	fn := func(s string, i uint8) bool {
+		r := PaddingLeft(s, "*", int(i))
+		if len(s) > int(i) {
+			return len(r) > int(i)
+		}
+		return len(r) == int(i)
+	}
+	if err := quick.Check(fn, nil); err != nil {
+		t.Error(err)
+	}
+}
+
+func TestGeneratedPaddingRight(t *testing.T) {
+	fn := func(s string, i uint8) bool {
+		r := PaddingRight(s, "*", int(i))
+		if len(s) > int(i) {
+			return len(r) > int(i)
+		}
+		return len(r) == int(i)
+	}
+	if err := quick.Check(fn, nil); err != nil {
+		t.Error(err)
+	}
 }
