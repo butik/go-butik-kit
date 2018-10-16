@@ -14,16 +14,16 @@ var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzабвгдежзийклмн
 
 type Words string
 
-func RandStringRunes(n int) string {
+func RandRunes(n int) []rune {
 	b := make([]rune, n)
 	for i := range b {
 		b[i] = letterRunes[rand.Intn(len(letterRunes))]
 	}
-	return string(b)
+	return b
 }
 
 func (Words) Generate(r *rand.Rand, size int) reflect.Value {
-	str := Words(RandStringRunes(size))
+	str := Words(RandRunes(size))
 	return reflect.ValueOf(str)
 }
 
