@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/sarulabs/di"
+	"github.com/butik/di"
 )
 
 func WithContainer(app di.Container, logFunc func(msg string)) func(http.Handler) http.Handler {
